@@ -34,17 +34,13 @@ if (isset($_GET['id'])) {
     <?php foreach ($este_producto as $producto): ?>
         <div class="ficha_este_producto">
             <h2><?php echo $producto['nombre']; ?></h2>
-            <br>
             <div>
                 <img src="<?php echo $producto['imagen'];?>">
             </div>
             <br>
             <p><?php echo $producto['precio']; ?> €</p>
-            <br>
             <p><?php echo $producto['nombre_fabricante']; ?></p>
-            <br>
             <p class="area_descripcion"><?php echo $producto['descripcion']; ?></p>
-            <br>
         </div>
     <?php endforeach; ?>
     <br>
