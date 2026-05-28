@@ -1,0 +1,37 @@
+1 Proyecto de gestión de un catálogo de productos
+1.1 1. Objetivo
+
+El objetivo de esta práctica es desarrollar una aplicación web dinámica en PHP que permita la gestión de un inventario de productos y sus fabricantes. La aplicación deberá implementar un sistema de permisos basado en la autenticación de usuarios.
+1.2 2. Base de datos
+
+Se debe crear una base de datos llamada catalogo que contenga las siguientes tablas:
+
+    usuario: Almacena las credenciales de acceso (id, nombre, apellido1, apellido2, email, login, password).
+    fabricante: Tabla para los fabricantes (id, nombre).
+    producto: Tabla para los productos (id, nombre, descripción, precio, imagen, id_fabricante).
+
+1.3 3. Requisitos funcionales
+1.3.1 3.1. Acceso público (invitados)
+
+Cualquier usuario que visite la web sin autenticarse podrá:
+
+    Visualizar el catálogo completo de productos con su nombre, precio, descripción e imagen.
+    Acceder a la ficha de detalle de cada producto para visualizar toda su información de forma ampliada.
+    Gestionar la paginación de los resultados del catálogo para mostrar un número limitado de productos por página.
+    Ordenar los productos por precio, permitiendo alternar entre orden ascendente y descendente.
+    Realizar búsquedas mediante un formulario de búsqueda que permita filtrar productos por nombre o descripción.
+
+1.3.2 3.2. Sistema de autenticación
+
+    Inicio de sesión (login): Formulario de acceso que valide las credenciales contra la tabla usuarios.
+    Seguridad: Se recomienda el uso de sesiones (session_start()) para mantener el estado de la sesión del usuario.
+    Cierre de sesión (logout): Botón para cerrar la sesión de forma segura.
+
+1.3.3 3.3. Gestión privada (CRUD)
+
+Solo los usuarios identificados tendrán acceso a las operaciones de escritura (INSERT, UPDATE y DELETE):
+
+    Productos: Insertar nuevos productos en la base de datos gestionando la subida de imágenes, editar los productos existentes y eliminarlos..
+    Fabricantes: Insertar, editar y eliminar fabricantes.
+    Integridad: Al crear o editar un producto, el fabricante debe seleccionarse mediante un desplegable (<select>) que obtenga los datos de la base de datos.
+

@@ -1,0 +1,124 @@
+/* Espacio entre elementos */
+* {
+    margin: 20;
+    padding: 20;
+    box-sizing: border-box;
+}
+
+body {
+    color: black;
+    background-color: white;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.sessionOut{
+    color: red;
+}
+
+.sessionIn{
+    color: green;
+}
+
+.ficha_este_producto{
+  
+  display: grid;
+  place-items: center; /* Centra en ambos ejes al mismo tiempo */
+  height: 90vh;       /* Opcional: Para ocupar toda la pantalla */
+
+}
+
+/* Espaciado para todos los elementos */
+h1, h2, h3, h4, h5, h6, p, div, section, article, form, table, button, input, select, a {
+    margin-bottom: 15px;
+}
+
+h1, h2{
+        color: blue;
+}
+
+/* Enlaces azules que se agrandan al hacer hover */
+a {
+    color: blue;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.1);
+}
+
+a:active{
+color: red;
+}
+
+a:active{
+font-size: large;
+font-weight: bold;
+}
+
+/* Tablas con fondo lightblue */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: lightgreen;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #999;
+        background-color: lightgreen;
+
+}
+
+/* Botones con fondo lightblue y letra negra */
+button, input[type="submit"], input[type="button"] {
+    background-color: lightblue;
+    color: black;
+    border: 1px solid #999;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Botones se agrandan al hacer hover */
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    transform: scale(1.05);
+}
+
+/* Inputs de texto con línea azul */
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    border: 2px solid blue;
+    padding: 10px;
+    width: 25%;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Inputs adquieren fondo lightgreen al escribir */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    background-color: lightgreen;
+    outline: none;
+    border-color: darkblue;
+}
+
+/* Espaciado adicional para elementos en bloque */
+div, p, ul, ol, form {
+    margin-bottom: 20px;
+}
+
+/* Espaciado entre celdas de tabla */
+td, th {
+    margin: 5px;
+    padding: 12px;
+}
+
+img {
+    width: 400px;
+    height: 300px;
+}
