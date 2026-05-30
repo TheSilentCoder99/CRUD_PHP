@@ -25,8 +25,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="estilo_ficha_producto.css">
     <title>Ficha producto</title>
 </head>
 
@@ -34,10 +33,7 @@ if (isset($_GET['id'])) {
     <?php foreach ($este_producto as $producto): ?>
         <div class="ficha_este_producto">
             <h2><?php echo $producto['nombre']; ?></h2>
-            <div>
                 <img src="<?php echo $producto['imagen'];?>">
-            </div>
-            <br>
             <p><?php echo $producto['precio']; ?> €</p>
             <p><?php echo $producto['nombre_fabricante']; ?></p>
             <p class="area_descripcion"><?php echo $producto['descripcion']; ?></p>
@@ -47,5 +43,4 @@ if (isset($_GET['id'])) {
     <a href="index.php">🔙 Volver</a>
 
 </body>
-
 </html>

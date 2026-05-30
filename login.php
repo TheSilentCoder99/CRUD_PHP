@@ -5,19 +5,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $error = '';
 
-    // 1. Recoger los datos del formulario
-    if (isset($_POST['usuario']) && isset($_POST['password'])) {
-        $login = $_POST['usuario'];
-        $password = $_POST['password'];
-    }
+    // 1. Recoger los datos del formulario comprobando que se ingrese una regex que solo acepte letras, números y carácteres especiales, dejando fuera los espacios en blanco.
+    if (isset($_POST['usuario']) && isset($_POST['password']) && preg_match('/^\S+$/', $_POST['usuario']) || !preg_match('/^\S+$/', $_POST['password'])) {
 
+        $login = $_POST['usuario'];
+        $password = $_POST['password'];  
+    }
 
     // 2. Buscar el usuario en la BD
     require 'conexion.php';
     $stmt = $conn->prepare("SELECT * FROM usuario WHERE login = :login");
     $stmt->execute([':login' => $login]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
     // 3. Verificar contraseña
     if ($usuario && password_verify($password, $usuario['password'])) {
@@ -43,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="estilo_login.css">
     <title>Iniciar sesión</title>
 </head>
 

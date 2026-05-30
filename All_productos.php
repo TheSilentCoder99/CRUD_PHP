@@ -5,41 +5,41 @@ require 'conexion.php';
 // BUSCAR UN PRODUCTO
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['p_buscado'])) {
 
-$nombre_producto = "%" . $_GET['p_buscado'] . "%";
+    $nombre_producto = "%" . $_GET['p_buscado'] . "%";
 
-$stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
+    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
 FROM producto
 INNER JOIN fabricante ON producto.id_fabricante = fabricante.id
 WHERE producto.nombre LIKE :producto_buscado");
 
-$stmt->execute(['producto_buscado'=> $nombre_producto]);
+    $stmt->execute(['producto_buscado' => $nombre_producto]);
 
-$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } else {
-// SI NO SE ENCUENTRA, MOSTRAR TODOS
-$stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
+    // SI NO SE ENCUENTRA, MOSTRAR TODOS
+    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
 FROM producto
 JOIN fabricante ON producto.id_fabricante = fabricante.id");
 
-$stmt->execute();
+    $stmt->execute();
 
-$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 }
 
 // BOTON MOSTRAR TODOS
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['mostrar_todos'])) {
 
-        $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
+    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
 FROM producto
 JOIN fabricante ON producto.id_fabricante = fabricante.id");
-        $stmt->execute();
-        $productos = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    $stmt->execute();
+    $productos = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-    // CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
-    $productos_por_pagina = 5;
+// CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
+$productos_por_pagina = 5;
 $pagina_actual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 $offset = ($pagina_actual - 1) * $productos_por_pagina;
 
@@ -67,9 +67,11 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_all_fabprod.css">
 </head>
+
 <body>
     <h2>Productos</h2>
     <!-- FORMULARIO QUE ENVÍA LA BÚSQUEDA Y LA PETICIÓN DE MOSTRAR TODOS -->
@@ -84,8 +86,8 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="create_producto.php" target="_blank">Añadir producto</a>
     <br>
     <a href="All_fabricantes.php">Ir a fabricantes</a>
-<br>
-            <a href="index.php">Página principal</a>
+    <br>
+    <a href="index.php">Página principal</a>
 
     <?php
     foreach ($productos as $producto): ?>
@@ -95,10 +97,9 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p><?php echo $producto['precio']; ?>€</p>
             <p><?php echo $producto['descripcion']; ?></p>
             <p><?php echo $producto['nombre_fabricante']; ?></p>
-            
+
             <!-- Añades los botones de editar y eliminar -->
-             <a href="update_producto.php?id=<?php echo $producto["id"] ?>"
-                target="_blank">Editar</a>
+            <a href="update_producto.php?id=<?php echo $producto["id"] ?>" target="_blank">Editar</a>
 
             <a href="delete_producto.php?id=<?php echo $producto['id']; ?>"
                 onclick="return confirm('¿Seguro que quieres eliminar este producto?')">
@@ -110,12 +111,15 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <hr>
     <!-- NAVEGACIÓN DE PÁGINAS -->
-    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-        <a
-            href="All_productos.php?pagina=<?php echo $i; ?>">
-            <?php echo $i; ?>
-        </a>
-    <?php endfor; ?>
+    <div class="paginacion-container">
+        <?php for ($i = 1; $i <= $total_paginas; $i++):
+            $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+            $activo = ($i == $pagina_actual) ? 'activo' : '';
+            ?>
+            <a href="All_productos.php?pagina=<?php echo $i; ?>" class="<?php echo $activo; ?>">
+                <?php echo $i; ?></a>
+        <?php endfor; ?>
+    </div>
 
 </body>
 

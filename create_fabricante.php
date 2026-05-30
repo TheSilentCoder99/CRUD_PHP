@@ -1,7 +1,10 @@
 <?php
 require 'conexion.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre'])) {
+$patron_nombre = '/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ .,\-_]+$/
+';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre']) && preg_match($patron_nombre,$_POST['nombre'])) {
 
     $nombre_fabricante = $_POST['nombre'];
     $stmt = $conn->prepare("INSERT INTO fabricante (nombre) VALUES (:nombre)");
@@ -19,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_crear_fabricante.css">
     <title>Insertar fabricante</title>
 </head>
 

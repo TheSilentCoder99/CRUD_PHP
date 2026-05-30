@@ -1,0 +1,429 @@
+/* Reset básico y estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #333;
+}
+
+/* Contenedor principal */
+body > * {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Títulos */
+h1, h2 {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Formulario de búsqueda */
+form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+form input[type="text"] {
+    width: 70%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+form input[type="text"]:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0.5rem;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón "Mostrar todos" específico */
+button[name="mostrar_todos"] {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+button[name="mostrar_todos"]:hover {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+}
+
+/* Enlaces de navegación */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0.3rem;
+}
+
+a:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlaces específicos de creación */
+a[href="create_fabricante.php"],
+a[href="create_producto.php"] {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    margin: 0.5rem;
+}
+
+a[href="create_fabricante.php"]:hover,
+a[href="create_producto.php"]:hover {
+    transform: translateY(-2px);
+}
+
+/* Enlaces de navegación entre secciones */
+a[href="All_productos.php"],
+a[href="All_fabricantes.php"],
+a[href="index.php"] {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Separadores */
+hr {
+    margin: 2rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Tarjetas de fabricantes */
+body > div {
+    background: white;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+body > div:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Nombre del fabricante */
+body > div:not(:has(h2))::before {
+    content: "🏭 ";
+    font-size: 1.2rem;
+}
+
+body > div:not(:has(h2)) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #764ba2;
+}
+
+/* Tarjetas de productos */
+div:has(h2) {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+div:has(h2):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Títulos dentro de productos */
+div:has(h2) h2 {
+    color: #764ba2;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    text-shadow: none;
+}
+
+/* Párrafos dentro de productos */
+div:has(h2) p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Precio destacado */
+div:has(h2) p:nth-of-type(1) {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Fabricante en productos */
+div:has(h2) p:nth-of-type(3) {
+    color: #764ba2;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Botones de editar y eliminar como texto simple */
+div a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0;
+    margin: 0.5rem 1rem 0 0;
+    background: none;
+    box-shadow: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+div a:first-of-type {
+    color: #667eea;
+}
+
+div a:first-of-type:hover {
+    color: #764ba2;
+    transform: scale(1.05);
+    background: none;
+}
+
+div a:last-of-type {
+    color: #e53e3e;
+}
+
+div a:last-of-type:hover {
+    color: #c53030;
+    transform: scale(1.05);
+    background: none;
+}
+
+/* Separador entre acciones cuando hay múltiples */
+div a:not(:last-of-type)::after {
+    content: "|";
+    margin-left: 1rem;
+    color: #ccc;
+    font-weight: normal;
+}
+
+/* Navegación de páginas - ESTILO PARA LA CLASE ACTIVO */
+hr + a,
+body > a:last-child,
+a[href*="pagina"] {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: red;
+    padding: 0.6rem 1rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 40px;
+}
+
+/* Efecto hover para enlaces de paginación */
+hr + a:hover,
+body > a:last-child:hover,
+a[href*="pagina"]:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ESTILO PARA LA PÁGINA ACTIVA */
+.activo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    cursor: default !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.activo:hover {
+    transform: none !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Contenedor de paginación */
+hr + br + a,
+body > :last-child:not(div):not(h1):not(h2):not(form):not(hr) {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Asegurar que todos los enlaces de paginación estén en el mismo contenedor */
+body > a[href*="pagina"] {
+    display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    h1, h2 {
+        font-size: 1.8rem;
+    }
+    
+    form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    form button {
+        width: 100%;
+        margin: 0.3rem 0;
+    }
+    
+    /* Tarjetas responsivas */
+    body > div {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    div:has(h2) {
+        padding: 1rem;
+    }
+    
+    div:has(h2) h2 {
+        font-size: 1.2rem;
+    }
+    
+    /* Botones en tarjetas responsivos */
+    div a {
+        display: inline-block;
+        margin: 0.3rem;
+    }
+    
+    div a:not(:last-of-type)::after {
+        content: "";
+        margin: 0;
+    }
+    
+    /* Paginación responsiva */
+    hr + a,
+    body > a:last-child,
+    a[href*="pagina"] {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 35px;
+    }
+    
+    /* Enlaces de navegación responsivos */
+    a {
+        display: block;
+        text-align: center;
+        margin: 0.5rem;
+    }
+    
+    a[href="All_productos.php"],
+    a[href="All_fabricantes.php"],
+    a[href="index.php"] {
+        display: block;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > div,
+div:has(h2) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Mejoras de accesibilidad */
+form input:focus,
+form button:focus,
+a:focus {
+    outline: 3px solid rgba(118, 75, 162, 0.5);
+    outline-offset: 2px;
+}
+
+/* Mensaje cuando no hay resultados */
+body > :empty:not(script):not(style) {
+    display: none;
+}

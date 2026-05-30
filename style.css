@@ -20,14 +20,6 @@ body {
     color: green;
 }
 
-.ficha_este_producto{
-  
-  display: grid;
-  place-items: center; /* Centra en ambos ejes al mismo tiempo */
-  height: 90vh;       /* Opcional: Para ocupar toda la pantalla */
-
-}
-
 /* Espaciado para todos los elementos */
 h1, h2, h3, h4, h5, h6, p, div, section, article, form, table, button, input, select, a {
     margin-bottom: 15px;
@@ -42,20 +34,14 @@ a {
     color: blue;
     text-decoration: none;
     display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-a:hover {
-    transform: scale(1.1);
 }
 
 a:active{
 color: red;
 }
 
-a:active{
-font-size: large;
-font-weight: bold;
+a:hover{
+color: red;
 }
 
 /* Tablas con fondo lightblue */
@@ -121,4 +107,25 @@ td, th {
 img {
     width: 400px;
     height: 300px;
+}
+
+.navegacion_paginasIndex.activo{
+    color: red;
+}
+
+.navegacion_paginasIndex{
+    font-size:larger;
+    font-weight: 700;
+    color: blue;
+}
+
+.navegacion_crear_producto{
+        font-size:larger;
+
+    color: blue;
+    font: 700;
+}
+
+.navegacion_crear_producto.activo{
+    color: red;
 }

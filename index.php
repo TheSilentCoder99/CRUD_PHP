@@ -4,6 +4,7 @@ session_start();
 
 require 'conexion.php';
 
+
 // 1. LEER PARÁMETROS DE LA URL
 $orden = isset($_GET['orden']) && $_GET['orden'] === 'asc' ? 'asc' : 'desc';
 
@@ -11,10 +12,11 @@ $orden_siguiente = $orden === 'asc' ? 'desc' : 'asc';
 $texto_boton = $orden === 'asc' ? 'precio ↑' : 'precio ↓';
 
 
-    // CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
+// CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
 $productos_por_pagina = 5;
 $pagina_actual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 $offset = ($pagina_actual - 1) * $productos_por_pagina;
+
 
 // 2. CONSTRUIR EL WHERE DINÁMICAMENTE
 // WHERE 1=1 siempre es verdadero, permite añadir AND después sin problema
@@ -53,9 +55,10 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
-    
+
 <head>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_index.css">
+
 </head>
 
 <body>
@@ -88,23 +91,27 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <br>
     <thead>PRODUCTOS REGISTRADOS</thead>
-  <table border="1">
-    <?php foreach ($productos as $producto): ?>
-    <tr>
-        <td><?php echo $producto['nombre']; ?></td>
-        <td><?php echo $producto['precio']; ?> €</td>
-        <td><?php echo $producto['descripcion']; ?></td>
-        <td><?php echo $producto['nombre_fabricante']; ?></td>
-        <td><a href="ficha_producto.php?id=<?php echo $producto['id']; ?>">Ver ficha</a></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+    <table border="1">
+        <?php foreach ($productos as $producto): ?>
+            <tr>
+                <td><?php echo $producto['nombre']; ?></td>
+                <td><?php echo $producto['precio']; ?> €</td>
+                <td><?php echo $producto['descripcion']; ?></td>
+                <td><?php echo $producto['nombre_fabricante']; ?></td>
+                <td><a href="ficha_producto.php?id=<?php echo $producto['id']; ?>" target="_blank"> Ver ficha </a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 
     <hr>
     <!-- NAVEGACIÓN DE PÁGINAS -->
-    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-        <a
-            href="index.php?pagina=<?php echo $i; ?>&orden=<?php echo $orden; ?>&buscar=<?php echo $_GET['buscar'] ?? ''; ?>">
+    <!-- Si estamos en la misma página de la URL, a la clase que rastrea el numeral se le añade la clase "ACTIVO" que es la clase que añade el color rojo a ese numeral. -->
+    <?php for ($i = 1; $i <= $total_paginas; $i++):
+        $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        $activo = ($i == $pagina_actual) ? 'activo' : '';
+        ?>
+        <a href="index.php?pagina=<?php echo $i; ?>&orden=<?php echo $orden; ?>&buscar=<?php echo $_GET['buscar'] ?? ''; ?>"
+            class="navegacion_paginasIndex <?php echo $activo; ?>">
             <?php echo $i; ?>
         </a>
     <?php endfor; ?>

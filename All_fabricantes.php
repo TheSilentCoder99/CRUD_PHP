@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['mostrar_todos'])) {
     $fabricantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-    // CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
-    $productos_por_pagina = 5;
+// CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
+$productos_por_pagina = 5;
 $pagina_actual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 $offset = ($pagina_actual - 1) * $productos_por_pagina;
 
@@ -55,7 +55,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_all_fabprod.css">
 </head>
 
 <body>
@@ -69,10 +69,10 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </form>
 
     <a href="create_fabricante.php" target="_blank">Añadir fabricante</a>
-<br>
+    <br>
     <a href="All_productos.php">Ir a productos</a>
     <br>
-        <a href="index.php">Página principal</a>
+    <a href="index.php">Página principal</a>
     <hr>
     <?php
     foreach ($fabricantes as $fabricante): ?>
@@ -90,14 +90,19 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endforeach; ?>
     <hr>
-    
+
     <!-- NAVEGACIÓN DE PÁGINAS -->
-    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-        <a
-            href="All_fabricantes.php?pagina=<?php echo $i; ?>">
-            <?php echo $i; ?>
-        </a>
-    <?php endfor; ?>
+    <div class="paginacion-container">
+
+        <?php for ($i = 1; $i <= $total_paginas; $i++):
+            $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+            $activo = ($i == $pagina_actual) ? 'activo' : '';
+            ?>
+            <a href="All_fabricantes.php?pagina=<?php echo $i; ?>" class="<?php echo $activo; ?>">
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+    </div>
 
 </body>
 

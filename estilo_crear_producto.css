@@ -1,0 +1,304 @@
+/* Reset básico y estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #333;
+}
+
+/* Contenedor principal */
+body > * {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Enlace Volver */
+a[href="All_productos.php"] {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+a[href="All_productos.php"]:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Título principal */
+h2 {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Formulario */
+form {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+form hr {
+    margin: 1rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+form label {
+    display: inline-block;
+    width: 150px;
+    font-weight: 600;
+    color: #764ba2;
+    margin: 0.5rem 0;
+}
+
+form input[type="text"],
+form input[type="file"],
+form select {
+    width: calc(100% - 160px);
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    margin: 0.5rem 0;
+}
+
+form input[type="text"]:focus,
+form select:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+form input[type="file"] {
+    border: none;
+    padding: 0;
+}
+
+form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlace "Nuevo fabricante" */
+a[target="_blank"] {
+    display: inline-block;
+    margin-left: 160px;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+a[target="_blank"]:hover {
+    text-decoration: underline;
+    color: #764ba2;
+}
+
+/* Lista de productos existentes */
+hr + div {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+hr + div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+hr + div h3 {
+    color: #764ba2;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+hr + div p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+hr + div b p {
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+/* Contenedor de la imagen del producto */
+hr + div div {
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imagen del producto */
+hr + div img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;  /* Esto centra la imagen horizontalmente */
+}
+
+hr + div hr {
+    display: none;
+}
+
+/* Separador entre productos */
+hr:not(form hr) {
+    display: none;
+}
+
+/* Navegación de páginas */
+.navegacion_crear_producto {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 40px;
+}
+
+.navegacion_crear_producto:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para la página activa */
+.navegacion_crear_producto.activo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: default;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navegacion_crear_producto.activo:hover {
+    transform: none;
+}
+
+/* Contenedor de paginación */
+body > :last-child {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    form label {
+        width: 100%;
+        display: block;
+    }
+    
+    form input[type="text"],
+    form input[type="file"],
+    form select {
+        width: 100%;
+    }
+    
+    a[target="_blank"] {
+        margin-left: 0;
+        display: block;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    hr + div img {
+        max-width: 150px;
+    }
+    
+    .navegacion_crear_producto {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 35px;
+    }
+}
+
+/* Animación de carga para imágenes */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img{
+    width: 400px;
+    height: 300px;
+}
+
+/* Estilos para el scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}

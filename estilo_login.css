@@ -1,0 +1,233 @@
+/* Reset básico y estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Contenedor principal del login */
+body > * {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Mensaje de error */
+p {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    border-left: 4px solid #c53030;
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Formulario de login */
+form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+/* Título del formulario (añadir si quieres) */
+form::before {
+    content: "🔐 Iniciar sesión";
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: #764ba2;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* Etiquetas */
+form label {
+    display: block;
+    font-weight: 600;
+    color: #764ba2;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Campos de entrada */
+form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+}
+
+/* Botón de enviar */
+form button {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* Enlace "Continuar sin iniciar sesión" */
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #764ba2;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+a:hover {
+    background: white;
+    color: #667eea;
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación de error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Estilos adicionales para mejorar el login */
+form br {
+    display: none;
+}
+
+/* Espaciado entre campos */
+form input:nth-of-type(1) {
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    form {
+        padding: 1.5rem;
+    }
+    
+    form::before {
+        font-size: 1.4rem;
+    }
+    
+    form input {
+        padding: 0.7rem;
+    }
+    
+    form button {
+        padding: 0.7rem;
+    }
+    
+    a {
+        padding: 0.7rem 1.5rem;
+    }
+}
+
+/* Efecto de fondo decorativo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="20" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="85" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="50" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="70" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-repeat: repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Mejora de accesibilidad */
+form input:focus-visible,
+form button:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(118, 75, 162, 0.5);
+    outline-offset: 2px;
+}
+
+/* Estilo para autocompletado */
+form input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-text-fill-color: #333;
+}
+
+form input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+/* Versión con icono en el botón */
+form button::before {
+    content: "→ ";
+    font-size: 1.1rem;
+}
+
+/* Opcional: añadir iconos a los campos */
+form label[for="usuario"]::before {
+    content: "👤 ";
+}
+
+form label[for="password"]::before {
+    content: "🔒 ";
+}
+
+/* Estilo para el mensaje de error con icono */
+p::before {
+    content: "⚠️ ";
+    font-size: 1.1rem;
+}

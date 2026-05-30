@@ -8,7 +8,13 @@ if (!isset($_SESSION['usuario_id'])) {
 
 require 'conexion.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre']) && !empty($_POST['precio']) && !empty($_POST['id_fabricante'])) {
+$patron_nombre = '/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ .,\-_]+$/
+';
+$patron_precio = '/^\d+([.,]\d+)?$/
+';
+
+// COMPRUEBO QUE LOS DATOS BÁSICOS: NOMBRE, PRECIO Y FABRICANTE SE HAYAN INTRODUCIDO, NO ESTÉN VACÍOS Y CONTENGAN NÚMEROS, LETRAS Y SIN ESPACIOS VACÍOS.
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre']) && !empty($_POST['precio']) && !empty($_POST['id_fabricante']) && preg_match($patron_nombre,$_POST['nombre']) && preg_match($patron_precio,$_POST['precio'])) {
 
     $nombre_producto = $_POST['nombre'];
     $precio_producto = (float) $_POST['precio'];
@@ -83,7 +89,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_crear_producto.css">
     <title>Insertar producto</title>
 </head>
 <a href="All_productos.php">Volver</a>
@@ -152,12 +158,18 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endforeach; ?>
 
-        <!-- NAVEGACIÓN DE PÁGINAS -->
-        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-            <a href="create_producto.php?pagina=<?php echo $i; ?>">
+    <!-- NAVEGACIÓN DE PÁGINAS -->
+<!-- Si estamos en la misma página de la URL, a la clase que rastrea el numeral se le añade la clase "ACTIVO" que es la clase que añade el color rojo a ese numeral. -->
+<?php for ($i = 1; $i <= $total_paginas; $i++): 
+    $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+    $activo = ($i == $pagina_actual) ? 'activo' : '';
+?>
+  <a href="create_producto.php?pagina=<?php echo $i; ?>" class="navegacion_crear_producto <?php echo $activo; ?>">
                 <?php echo $i; ?>
             </a>
-        <?php endfor; ?>
+<?php endfor; ?>
+
+
 </body>
 
 </html>

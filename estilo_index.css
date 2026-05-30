@@ -1,0 +1,370 @@
+/* Reset básico y estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #333;
+}
+
+/* Contenedor principal */
+body > * {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Enlaces de sesión */
+.sessionIn, .sessionOut {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem;
+}
+
+.sessionIn:hover, .sessionOut:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlaces de gestión (solo para usuarios logueados) */
+body > a[href="All_productos.php"],
+body > a[href="All_fabricantes.php"] {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.3rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body > a[href="All_productos.php"]:hover,
+body > a[href="All_fabricantes.php"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Formulario de búsqueda */
+form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+form input[type="text"] {
+    width: 70%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+form input[type="text"]:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de ordenar precio */
+a[href*="orden"] {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+a[href*="orden"]:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Título de la tabla */
+thead {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 1.5rem 0 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tabla de productos */
+table {
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+table th, table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table tr {
+    transition: background-color 0.3s ease;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Encabezados de tabla (si tuvieras) */
+table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+/* Celdas de la tabla */
+table td {
+    color: #555;
+}
+
+/* Enlace "Ver ficha" dentro de la tabla */
+table a {
+    text-decoration: none;
+    color: #667eea;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+table a:hover {
+    color: #764ba2;
+    background: #f0f0f0;
+}
+
+/* Separador */
+hr {
+    margin: 2rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Navegación de páginas */
+.navegacion_paginasIndex {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 40px;
+}
+
+.navegacion_paginasIndex:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para la página activa */
+.navegacion_paginasIndex.activo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: default;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navegacion_paginasIndex.activo:hover {
+    transform: none;
+}
+
+/* Contenedor de paginación */
+hr + .navegacion_paginasIndex,
+body > :last-child {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    form button {
+        width: 100%;
+    }
+    
+    table, table thead, table tbody, table tr, table td, table th {
+        display: block;
+    }
+    
+    table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #764ba2;
+        margin-right: 1rem;
+    }
+    
+    thead {
+        display: none;
+    }
+    
+    .navegacion_paginasIndex {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 35px;
+    }
+    
+    .sessionIn, .sessionOut,
+    body > a[href="All_productos.php"],
+    body > a[href="All_fabricantes.php"] {
+        display: block;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+table tr {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Estilos para el scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+/* Mejoras de accesibilidad */
+form input:focus,
+form button:focus,
+a:focus {
+    outline: 3px solid rgba(118, 75, 162, 0.5);
+    outline-offset: 2px;
+}
+
+/* Mensaje cuando no hay resultados */
+table:empty::before {
+    content: "No se encontraron productos";
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Estilo para el precio en la tabla */
+table td:nth-child(2) {
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Estilo para el fabricante */
+table td:nth-child(4) {
+    font-style: italic;
+    color: #764ba2;
+}
