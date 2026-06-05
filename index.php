@@ -67,13 +67,13 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="login.php" class="sessionIn">Iniciar sesión</a>
     <?php else: ?>
         <a href="logout.php" class="sessionOut">Cerrar sesión</a>
+        <a href="panel_usuario.php">Mi usuario</a>
     <?php endif; ?>
 
     <!-- SI LA SESIÓN ESTÁ INICIADA, SE DA LA OPCIÓN DE GESTIONAR PRODUCTOS Y FABRICANTES -->
     <?php if (isset($_SESSION['usuario_id'])): ?>
         <br>
         <a href="All_productos.php">Gestionar productos</a>
-        <br>
         <a href="All_fabricantes.php">Gestionar fabricantes</a>
     <?php endif; ?>
 

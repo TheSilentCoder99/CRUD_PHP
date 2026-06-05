@@ -61,6 +61,12 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <h1>Fabricantes</h1>
     <hr>
+    <a href="create_fabricante.php" target="_blank">Añadir fabricante</a>
+    <br>
+    <a href="All_productos.php">Ir a productos</a>
+    <br>
+    <a href="index.php">Página principal</a>
+    <hr>
     <form method="GET" action="All_fabricantes.php">
         <input type="text" name="fabricante_buscado" placeholder="Buscar fabricante...">
         <button type="submit">Buscar</button>
@@ -68,12 +74,6 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit" name="mostrar_todos">Mostrar todos</button>
     </form>
 
-    <a href="create_fabricante.php" target="_blank">Añadir fabricante</a>
-    <br>
-    <a href="All_productos.php">Ir a productos</a>
-    <br>
-    <a href="index.php">Página principal</a>
-    <hr>
     <?php
     foreach ($fabricantes as $fabricante): ?>
         <div>

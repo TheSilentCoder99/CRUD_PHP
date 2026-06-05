@@ -43,6 +43,7 @@ body > * {
 /* Enlaces de gestión (solo para usuarios logueados) */
 body > a[href="All_productos.php"],
 body > a[href="All_fabricantes.php"] {
+
     display: inline-block;
     text-decoration: none;
     background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
@@ -55,8 +56,24 @@ body > a[href="All_fabricantes.php"] {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+body > a[href="panel_usuario.php"]{
+    
+  display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #ce332e 0%, #2f3b06 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.3rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 body > a[href="All_productos.php"]:hover,
-body > a[href="All_fabricantes.php"]:hover {
+body > a[href="All_fabricantes.php"]:hover,
+body > a[href="panel_usuario.php"]:hover {
+
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nuevo_nombre']) && !
     // guardo la ruta en una variable para pasarsela a la BD
     $url_imagen_enBD = 'imagenes/'. $imagen;
 
-    $stmt = $conn->prepare('UPDATE producto SET nombre = :nombre, precio = :precio, id_fabricante = :id_fabricante, descripcion = :descripcion, imagen = :imagen WHERE id = :id');
+    $stmt = $conn->prepare('UPDATEempty($nombre) producto SET nombre = :nombre, precio = :precio, id_fabricante = :id_fabricante, descripcion = :descripcion, imagen = :imagen WHERE id = :id');
 
     $stmt->execute(['nombre' => $nombre, 'precio' => $precio, 'id_fabricante' => $id_fabricante, 'descripcion' => $descripcion, 'imagen' => $url_imagen_enBD, 'id' => $id]);
 

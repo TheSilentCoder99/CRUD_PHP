@@ -1,0 +1,139 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  padding: 30px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Títulos */
+h1 {
+  color: black;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #e0e0e0;
+  font-weight: 600;
+}
+
+h2 {
+  color: black;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border-left: 4px solid #ccc;
+  padding-left: 15px;
+}
+
+/* Párrafos (datos del usuario) */
+p {
+  color: black;
+  margin: 12px 0;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-left: 4px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+p:hover {
+  background-color: #f0f0f0;
+  border-left-color: blue;
+  transform: translateX(5px);
+}
+
+/* Enlaces */
+a {
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 500;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+a:hover {
+  color: blue;
+  font-size: 1.05em;
+  transform: scale(1.02);
+  background-color: #f0f0f0;
+  border-color: blue;
+}
+
+/* Contenedor de ajustes (preparado para futuros elementos) */
+h2 + * {
+  margin-top: 15px;
+}
+
+/* Si hay botones en ajustes más adelante */
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 8px 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  transform: scale(1.05);
+  background-color: #f5f5f5;
+  border-color: blue;
+  color: blue;
+}
+
+/* Estilo para posibles listas o elementos adicionales */
+ul, ol {
+  background-color: white;
+  color: black;
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+li {
+  color: black;
+  margin: 8px 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  a {
+    display: block;
+    text-align: center;
+  }
+}
