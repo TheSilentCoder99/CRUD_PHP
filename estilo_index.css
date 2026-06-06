@@ -176,14 +176,6 @@ table tr:hover {
     background-color: #f9f9f9;
 }
 
-/* Encabezados de tabla (si tuvieras) */
-table th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: bold;
-    border-bottom: none;
-}
-
 /* Celdas de la tabla */
 table td {
     color: #555;

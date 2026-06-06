@@ -90,7 +90,6 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </a>
 
     <br>
-    <thead>PRODUCTOS REGISTRADOS</thead>
     <table border="1">
         <?php foreach ($productos as $producto): ?>
             <tr>

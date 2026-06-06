@@ -47,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nuevo_nombre'])) {
     <link rel="stylesheet" href="estilo_update_fabricante.css">
     <title>Actualizar fabricante</title>
 </head>
+
 <body>
+    <a href="All_fabricantes.php">Volver</a>
     <h2>Actualizar fabricante</h1>
 
         <div>
