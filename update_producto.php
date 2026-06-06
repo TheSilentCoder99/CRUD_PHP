@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nuevo_nombre']) && !
 
     // ruta final donde lo quiero guardar yo
     // __DIR__ es una constante de PHP que devuelve la ruta absoluta de la carpeta donde está el archivo PHP actual:
-    $ruta_final = $ruta_final = __DIR__ . '/imagenes/' . $imagen;
+    $ruta_final = __DIR__ . '/imagenes/' . $imagen;
 
     // lo muevo a mi ruta final
     move_uploaded_file($ruta_temporal, $ruta_final);
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nuevo_nombre']) && !
     // guardo la ruta en una variable para pasarsela a la BD
     $url_imagen_enBD = 'imagenes/'. $imagen;
 
-    $stmt = $conn->prepare('UPDATEempty($nombre) producto SET nombre = :nombre, precio = :precio, id_fabricante = :id_fabricante, descripcion = :descripcion, imagen = :imagen WHERE id = :id');
+    $stmt = $conn->prepare('UPDATE producto SET nombre = :nombre, precio = :precio, id_fabricante = :id_fabricante, descripcion = :descripcion, imagen = :imagen WHERE id = :id');
 
     $stmt->execute(['nombre' => $nombre, 'precio' => $precio, 'id_fabricante' => $id_fabricante, 'descripcion' => $descripcion, 'imagen' => $url_imagen_enBD, 'id' => $id]);
 
@@ -70,7 +70,7 @@ $all_fabricantes->execute();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo_update_producto.css">
     <title>Actualizar producto</title>
 </head>
 

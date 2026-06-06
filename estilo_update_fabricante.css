@@ -1,0 +1,192 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+div {
+  background-color: white;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+div:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2 {
+  color: black;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 3px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+/* Etiquetas */
+label {
+  display: block;
+  color: black;
+  margin: 15px 0 8px 0;
+  font-weight: 500;
+}
+
+/* Etiqueta que muestra el nombre actual */
+label:first-of-type {
+  background-color: #f8f8f8;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ddd;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+label:first-of-type:hover {
+  border-left-color: blue;
+  background-color: #f0f0f0;
+}
+
+/* Formulario */
+form {
+  margin-top: 20px;
+}
+
+/* Campo de texto */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: blue;
+  box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.1);
+}
+
+input[type="text"]:hover {
+  border-color: #999;
+}
+
+/* Input hidden */
+input[type="hidden"] {
+  display: none;
+}
+
+/* Botón Actualizar */
+button[type="submit"] {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.02);
+  background-color: #f0f0f0;
+  border-color: blue;
+  color: blue;
+  box-shadow: 0 2px 8px rgba(0, 0, 255, 0.1);
+}
+
+/* Enlace Volver (si decides agregarlo después) */
+a {
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+a:hover {
+  color: blue;
+  font-size: 1.05em;
+  transform: scale(1.02);
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  body {
+    padding: 20px 15px;
+  }
+  
+  div {
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  label:first-of-type {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+  
+  input[type="text"] {
+    padding: 10px 12px;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+  }
+}
+
+/* Mensajes de error o éxito (opcional) */
+.message {
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.message.success {
+  background-color: #f0f0f0;
+  border-left: 4px solid blue;
+  color: black;
+}
+
+.message.error {
+  background-color: #f8f8f8;
+  border-left: 4px solid #ccc;
+  color: black;
+}

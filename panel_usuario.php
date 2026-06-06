@@ -25,8 +25,11 @@ $este_usuario = $stm->fetch(PDO::FETCH_ASSOC);
 <body>
     <a href="index.php">Volver</a>
     <br>
+   
+        <img class="foto_usuario" src="<?php echo $este_usuario['foto_perfil']?>" alt="foto de perfil del usuario" width="200" height="200">
+   
+    <br>
     <h1><?php echo $este_usuario['nombre'] . " " . $este_usuario['apellido1'] ?></h1>
-
     <?php
     echo "<p>" . $este_usuario['nombre'] . "</p>";
     echo "<p>" . $este_usuario['apellido1'] . "</p>";

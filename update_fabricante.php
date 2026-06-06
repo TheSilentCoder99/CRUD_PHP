@@ -44,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nuevo_nombre'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo_update_fabricante.css">
     <title>Actualizar fabricante</title>
 </head>
-FETCH_ASSOC
 <body>
     <h2>Actualizar fabricante</h1>
 

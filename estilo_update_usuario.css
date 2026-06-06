@@ -135,3 +135,17 @@ input[type="hidden"] {
 span, p, li {
   color: black;
 }
+
+.foto_usuario {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%; /* Opcional: para hacerla circular */
+  /* object-fit: cover;  Opcional: ajusta la imagen sin deformar */
+  width: 350px;
+  height: 300px;
+}
+
+.foto_usuario:hover{
+  transform: scale(1.05);
+}

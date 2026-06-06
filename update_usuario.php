@@ -34,6 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['id'])) {
 }
 
 // ACTUALIZAR DATOS DEL USUARIO EN LA BD
+// NOTA SOBRE VALIDACIONES EN EL MÉTODO DE ENTRADA:
+/*
+La regla general es: **la condición del `if` debe ser lo mínimo necesario para saber que tiene sentido procesar la petición**. En este caso, saber que es POST es suficiente.
+Todoo lo demás, las comprobaciones de campos vacíos, los patrones, las reglas de negocio, van dentro como validaciones explícitas con sus mensajes de error correspondientes.
+Si pones demasiadas condiciones en el `if` principal, estás descartando casos silenciosamente, sin decirle nada al usuario. El usuario envía el formulario y... nada. Sin mensaje, sin redirección, sin explicación.*/
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // campos obligatorios según diseño de la BD
@@ -59,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!preg_match($patron_nombres, $nombre) || !preg_match($patron_nombres, $apellido1) || !preg_match($patron_login, $login)) {
 
         $error = 'El nombre y los apellidos solo admite letras.';
-        
+
     } elseif (!preg_match($patron_email, $email)) {
         $error = 'Ingresa un email válido';
     }
@@ -70,28 +75,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $apellido2 = null;
     }
 
+    // TRATAMIENTO DE LAS IMÁGENES
+    // ALMACENAR IMAGENES EN RUTA TEMPORAL PARA DESPUÉS GUARDARLOS EN LA CARPETA QUE CONTIENE LAS IMÁGENES EN LOCAL
+    // guardo el archivo que me envían en el formulario
+    $imagen_usuario = $_FILES['nueva_imagen']['name'];
 
-    // // ALMACENAR IMAGENES EN RUTA TEMPORAL PARA DESPUÉS GUARDARLOS EN LA CARPETA QUE CONTIENE LAS IMÁGENES EN LOCAL
-    // // guardo el archivo que me envían en el formulario
-    // $imagen = $_FILES['nueva_imagen']['name'];
+    // ruta temporal donde lo guarda php
+    $ruta_temporal = $_FILES['nueva_imagen']['tmp_name'];
 
-    // // ruta temporal donde lo guarda php
-    // $ruta_temporal = $_FILES['nueva_imagen']['tmp_name'];
+    // ruta final donde lo quiero guardar yo
+    // __DIR__ es una constante de PHP que devuelve la ruta absoluta de la carpeta donde está el archivo PHP actual:
+   $ruta_final = __DIR__ . '/fotos_perfil/' . $imagen_usuario;
 
-    // // ruta final donde lo quiero guardar yo
-    // // __DIR__ es una constante de PHP que devuelve la ruta absoluta de la carpeta donde está el archivo PHP actual:
-    // $ruta_final = $ruta_final = __DIR__ . '/imagenes/' . $imagen;
+    // lo muevo a mi ruta final
+    move_uploaded_file($ruta_temporal, $ruta_final);
 
-    // // lo muevo a mi ruta final
-    // move_uploaded_file($ruta_temporal, $ruta_final);
+    // guardo la ruta relativa en una variable para pasarsela a la BD
+    $url_imagen_enBD = 'fotos_perfil/'. $imagen_usuario;
 
-    // // guardo la ruta en una variable para pasarsela a la BD
-    // $url_imagen_enBD = 'imagenes/' . $imagen;
+
 
     if (empty($error)) {
-        $stmt = $conn->prepare('UPDATE usuario SET nombre = :nombre_nuevo, apellido1 = :apellido1_nuevo, apellido2 = :apellido2_nuevo, email = :email_nuevo, login = :login_nuevo WHERE id = :id');
+        $stmt = $conn->prepare('UPDATE usuario SET nombre = :nombre_nuevo, apellido1 = :apellido1_nuevo, apellido2 = :apellido2_nuevo, email = :email_nuevo, login = :login_nuevo, foto_perfil = :nueva_foto_perfil WHERE id = :id');
 
-        $stmt->execute(['nombre_nuevo' => $nombre, 'apellido1_nuevo' => $apellido1, 'apellido2_nuevo' => $apellido2, 'email_nuevo' => $email, 'id' => $id, 'login_nuevo' => $login]);
+        $stmt->execute(['nombre_nuevo' => $nombre, 'apellido1_nuevo' => $apellido1, 'apellido2_nuevo' => $apellido2, 'email_nuevo' => $email, 'id' => $id, 'login_nuevo' => $login, 'nueva_foto_perfil' => $url_imagen_enBD]);
 
         header('Location: panel_usuario.php');
     }
@@ -114,6 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h3>Datos actuales</h3>
     <div>
+
+    <h3 for="">Foto de perfil</h3>
+        <br>
+        <img class="foto_usuario" src="<?php echo $usuarioActual["foto_perfil"] ?>" alt="foto de perfil actual">
+        <br>
 
         <h3 for="">Nombre</h3>
         <br>
@@ -147,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h2>Actualiza los datos</h2>
 
-    <form action="update_usuario.php" method="post">
+    <form action="update_usuario.php" method="post" enctype="multipart/form-data">
 
         <!-- Envío el ID de forma oculta a través del mismo formulario para poder hacer el update -->
         <input type="hidden" name="id" value="<?php echo $usuarioActual['id'] ?>">
@@ -175,6 +187,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="nuevo_login"> Nuevo nombre de usuario: </label>
         <br>
         <input type="text" name="nuevo_login" value="<?php echo $usuarioActual["login"] ?>">
+        <br>
+
+        <label for="nueva_imagen"> Nueva foto de perfil: </label>
+        <br>
+        <input type="file" name="nueva_imagen">
         <br>
 
         <button type="submit" onclick="return confirm('¿Guardar modificaciones?')">Actualizar</button>

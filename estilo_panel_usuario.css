@@ -76,7 +76,7 @@ a:hover {
 }
 
 /* Contenedor de ajustes (preparado para futuros elementos) */
-h2 + * {
+h2+* {
   margin-top: 15px;
 }
 
@@ -106,7 +106,8 @@ input[type="submit"]:hover {
 }
 
 /* Estilo para posibles listas o elementos adicionales */
-ul, ol {
+ul,
+ol {
   background-color: white;
   color: black;
   margin: 15px 0;
@@ -118,20 +119,33 @@ li {
   margin: 8px 0;
 }
 
+/* Opción 1: Centrar la imagen con display block y margin (más simple) */
+.foto_usuario {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%; /* Opcional: para hacerla circular */
+  object-fit: cover;  /* Opcional: ajusta la imagen sin deformar */
+}
+
+.foto_usuario:hover{
+  transform: scale(1.05);
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   body {
     padding: 15px;
   }
-  
+
   h1 {
     font-size: 1.5rem;
   }
-  
+
   h2 {
     font-size: 1.2rem;
   }
-  
+
   a {
     display: block;
     text-align: center;

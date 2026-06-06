@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nombre']) && !empty(
 
      // ruta final donde lo quiero guardar yo
      // __DIR__ es una constante de PHP que devuelve la ruta absoluta de la carpeta donde está el archivo PHP actual:
-    $ruta_final = $ruta_final = __DIR__ . '/imagenes/' . $imagen;
+     
+    $ruta_final = __DIR__ . '/imagenes/' . $imagen;
 
     // lo muevo a mi ruta final
     move_uploaded_file($ruta_temporal, $ruta_final);

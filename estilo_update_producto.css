@@ -1,0 +1,235 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Enlace Volver */
+a:first-of-type {
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: 500;
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+a:first-of-type:hover {
+  color: blue;
+  font-size: 1.05em;
+  transform: scale(1.02);
+  background-color: #f0f0f0;
+  border-color: blue;
+}
+
+/* Títulos */
+h3 {
+  color: black;
+  font-size: 1.6rem;
+  margin: 20px 0 15px 0;
+  font-weight: 600;
+  border-left: 4px solid #ddd;
+  padding-left: 15px;
+}
+
+/* Contenedor de información actual */
+div:first-of-type {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0 25px 0;
+}
+
+div label {
+  display: block;
+  margin: 10px 0;
+  padding: 8px 12px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  color: black;
+  font-weight: 500;
+}
+
+div label:first-child {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+/* Imagen actual */
+div div {
+  text-align: center;
+  margin: 15px 0;
+}
+
+img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+  border-color: blue;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario */
+form {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+form label {
+  display: block;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+form input[type="text"],
+form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form select:focus {
+  outline: none;
+  border-color: blue;
+  box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.1);
+}
+
+/* Campo de archivo (imagen) */
+input[type="file"] {
+  width: 100%;
+  padding: 10px 0;
+  color: black;
+  background-color: white;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+  border-color: blue;
+  background-color: #fafafa;
+}
+
+/* Select personalizado */
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+/* Botón Actualizar */
+button[type="submit"] {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 12px 24px;
+  margin-top: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.02);
+  background-color: #f0f0f0;
+  border-color: blue;
+  color: blue;
+  box-shadow: 0 2px 8px rgba(0, 0, 255, 0.1);
+}
+
+/* Input hidden */
+input[type="hidden"] {
+  display: none;
+}
+
+/* Separadores visuales */
+br {
+  display: none;
+}
+
+/* Espaciado entre campos */
+form br {
+  display: none;
+}
+
+form label + br,
+form input + br,
+form select + br {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 15px;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  form {
+    padding: 20px;
+  }
+  
+  div label {
+    font-size: 0.9rem;
+  }
+  
+  img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
+
+/* Mensajes de confirmación (opcional) */
+.confirm-message {
+  background-color: #f0f0f0;
+  border-left: 4px solid blue;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
