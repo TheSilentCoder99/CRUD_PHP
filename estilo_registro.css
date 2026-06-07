@@ -1,0 +1,175 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    position: relative;
+}
+
+/* Efecto de rejilla futurista */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Contenedor principal de la tarjeta */
+.contenedor {
+    background: rgba(10, 20, 30, 0.65);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.contenedor:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 255, 0.4);
+    border-color: rgba(0, 255, 255, 0.5);
+}
+
+/* Título "Iniciar sesión" */
+h2, .titulo {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #00ffcc, #00b8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(0, 255, 200, 0.3);
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8eecff;
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"],
+input:not([type="submit"]):not([type="button"]) {
+    width: 100%;
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    color: #eef5ff;
+    font-family: inherit;
+    transition: all 0.25s ease;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px rgba(0, 255, 200, 0.4);
+    background: rgba(0, 30, 40, 0.8);
+}
+
+/* Botón Enviar */
+input[type="submit"],
+button[type="submit"],
+.enviar-btn {
+    width: 100%;
+    background: linear-gradient(95deg, #00ccbb, #0099ff);
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #031016;
+    letter-spacing: 0.5px;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 200, 200, 0.2);
+    font-family: inherit;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.02);
+    background: linear-gradient(95deg, #00ffdd, #00aaff);
+    box-shadow: 0 8px 20px rgba(0, 210, 200, 0.4);
+    color: #000;
+}
+
+/* Enlaces y texto secundario */
+.enlaces {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.enlaces a,
+.link {
+    color: #7fd1e0;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+    font-weight: 500;
+    border-bottom: 1px dashed rgba(0, 255, 200, 0.4);
+    padding-bottom: 2px;
+}
+
+.enlaces a:hover,
+.link:hover {
+    color: #00ffcc;
+    text-shadow: 0 0 4px #00ffcc;
+    border-bottom-color: #00ffcc;
+}
+
+/* Separador o decoración */
+hr {
+    margin: 1.2rem 0;
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 200, 0.5), transparent);
+}
+
+/* Efecto de neón sutil en el borde al enfocar cualquier input */
+input:focus {
+    outline: none;
+}

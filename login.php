@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['usuario']) && isset($_POST['password']) && preg_match('/^\S+$/', $_POST['usuario']) || !preg_match('/^\S+$/', $_POST['password'])) {
 
         $login = $_POST['usuario'];
-        $password = $_POST['password'];  
+        $password = $_POST['password'];
     }
 
     // 2. Buscar el usuario en la BD
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="estilo_login.css">
+    <link rel="stylesheet" href="estilo_login.css">
     <title>Iniciar sesión</title>
 </head>
 
@@ -68,6 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <br>
     <a href="index.php">Continuar sin iniciar sesión</a>
+    <a href="registro.php">Registrarse</a>
+
+
     <br>
 </body>
+
 </html>
