@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 require 'conexion.php';
 
 $patron_nombre = '/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ .,\-_]+$/

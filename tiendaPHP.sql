@@ -40,5 +40,3 @@ INSERT INTO producto (nombre, descripcion, precio, imagen, id_fabricante) VALUES
 ('MacBook Air M2', 'Portátil ultradelgado con chip M2 y 8GB RAM', 1199.99, 'macbook_m2.jpg', 3),
 ('Monitor UltraWide 34"', 'Monitor LG 34 pulgadas curvo con resolución 3440x1440', 449.99, 'monitor_lg.jpg', 4),
 ('Robot Aspirador', 'Robot aspirador Serie 8 con mapeo inteligente', 699.00, 'robot_bosch.jpg', 5);
-SHOW TABLES;
-SHOW CREATE TABLE fabricante;

@@ -76,11 +76,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $apellido2 = null;
     }
 
-    // TRATAMIENTO DE LAS IMÁGENES
-    // ALMACENAR IMAGENES EN RUTA TEMPORAL PARA DESPUÉS GUARDARLOS EN LA CARPETA QUE CONTIENE LAS IMÁGENES EN LOCAL
-    // guardo el archivo que me envían en el formulario
+  
+
+// SI NO HAY ERRORES, ENTRO AL BLOQUE DE ACTUALIZACIÓN DEL USUARIO
+    if (empty($error)) {
+
+  // TRATAMIENTO DE LAS IMÁGENES
+
+//   SI EL USUARIO ENVIA UNA IMAGEN PARA ACTUALIZARLA, EMPIEZO SU TRATAMIENTO
+        if (isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['error'] === UPLOAD_ERR_OK && $_FILES['nueva_imagen']['size'] > 0) {
+
+            // guardo el archivo que me envían en el formulario
     $imagen_usuario = $_FILES['nueva_imagen']['name'];
 
+        // ALMACENAR IMAGENES EN RUTA TEMPORAL PARA DESPUÉS GUARDARLOS EN LA CARPETA QUE CONTIENE LAS IMÁGENES EN LOCAL
     // ruta temporal donde lo guarda php
     $ruta_temporal = $_FILES['nueva_imagen']['tmp_name'];
 
@@ -94,12 +103,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // guardo la ruta relativa en una variable para pasarsela a la BD
     $url_imagen_enBD = 'fotos_perfil/'. $imagen_usuario;
 
+    // ACTUALIZO LA IMAGEN SOLAMENTE SI EL USUARIO ME HA ENVIADO UNA. SI SE ACTUALIZA TODO JUNTO, SI LA IMAGEN ESTÁ VACÍA, LA IMAGEN DEL USUARIO QUEDA EN BLANCO.
+    $stmt = $conn->prepare('UPDATE usuario SET foto_perfil = :nueva_foto_perfil WHERE id = :id');
+    $stmt->execute(['id' => $id, 'nueva_foto_perfil' => $url_imagen_enBD]);
+    }
 
+    // ACTUALIZO EL RESTO DE DATOS DEL USUARIO
+        $stmt = $conn->prepare('UPDATE usuario SET nombre = :nombre_nuevo, apellido1 = :apellido1_nuevo, apellido2 = :apellido2_nuevo, email = :email_nuevo, login = :login_nuevo WHERE id = :id');
 
-    if (empty($error)) {
-        $stmt = $conn->prepare('UPDATE usuario SET nombre = :nombre_nuevo, apellido1 = :apellido1_nuevo, apellido2 = :apellido2_nuevo, email = :email_nuevo, login = :login_nuevo, foto_perfil = :nueva_foto_perfil WHERE id = :id');
-
-        $stmt->execute(['nombre_nuevo' => $nombre, 'apellido1_nuevo' => $apellido1, 'apellido2_nuevo' => $apellido2, 'email_nuevo' => $email, 'id' => $id, 'login_nuevo' => $login, 'nueva_foto_perfil' => $url_imagen_enBD]);
+        $stmt->execute(['nombre_nuevo' => $nombre, 'apellido1_nuevo' => $apellido1, 'apellido2_nuevo' => $apellido2, 'email_nuevo' => $email, 'id' => $id, 'login_nuevo' => $login]);
 
         header('Location: panel_usuario.php');
     }
