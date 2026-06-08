@@ -18,17 +18,17 @@ $comprobacion_password_registrada = $_POST['password_comprobacion'];
 // VALIDACIONES DE ENTRADA
 
 if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/', $nombre_registrado)) {
-    $error = 'El nombre es obligatorio y solo puede contener letras.';
+    $iserror = 'El nombre es obligatorio y solo puede contener letras.';
 } elseif (empty($apellido1_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/', $apellido1_registrado)) {
-    $error = 'El primer apellido es obligatorio y solo puede contener letras.';
+    $iserror = 'El primer apellido es obligatorio y solo puede contener letras.';
 } elseif (empty($email_registrado) || !preg_match('/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/', $email_registrado)) {
-    $error = 'El email es obligatorio y debe tener un formato válido.';
+    $iserror = 'El email es obligatorio y debe tener un formato válido.';
 } elseif (empty($login_registrado) || !preg_match('/^[a-zA-Z0-9]+$/', $login_registrado)) {
-    $error = 'El login es obligatorio y solo puede contener letras y números, sin espacios.';
+    $iserror = 'El login es obligatorio y solo puede contener letras y números, sin espacios.';
 } elseif (empty($password_registrada)) {
-    $error = 'La contraseña es obligatoria.';
+    $iserror = 'La contraseña es obligatoria.';
 } elseif ($password_registrada !== $comprobacion_password_registrada) {
-    $error = 'Las contraseñas no coinciden.';
+    $iserror = 'Las contraseñas no coinciden.';
 }
 
     // TRATAMIENTO DE LAS IMÁGENES
@@ -51,21 +51,21 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
     // TENDRÍAS QUE COMPROBAR QUE EL USUARIO NO EXISTE YA
     // 2. Buscar el usuario en la BD
     require 'conexion.php';
-    $stmt = $conn->prepare("SELECT * FROM usuario WHERE login = :login_existente");
-    $stmt->execute([':login_existente' => $login_registrado]);
+    $stmt = $conn->prepare("SELECT * FROM usuario WHERE email = :email_existente");
+    $stmt->execute([':email_existente' => $email_registrado]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
     // COMPRUEBO QUE LAS CONTRASEÑAS COINCIDAN
     if ($password_registrada != $comprobacion_password_registrada) {
         $coinciden = false;
-        $iserror = 'Las contraseñas deben ser iguales';
+        $iserror = 'Las contraseñas deben ser iguales.';
 
-    } elseif (!empty($usuario['email'])) {
-        $iserror = 'El usuario ya existe en la BD';
+    } elseif (($usuario['email']) === $email_registrado) {
+        $iserror = 'Este email ya pertenece a un usuario registrado en la BD.';
     } else {
 
-    if(empty($error)) {
+    if(empty($iserror)) {
 
         // SI COINCIDEN, GUARDO EL HASH EN LA BD, NO LA CONTRASEÑA EN TEXTO PLANO
         $hash = password_hash($password_registrada, PASSWORD_BCRYPT);
@@ -97,6 +97,7 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
 <body>
 
     <h1>Completa los campos</h1>
+      
     <form action="registro.php" method="post">
         <br>
         <br>
@@ -106,11 +107,11 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
         <br>
         <br>
 
-        <label for="">Nombre</label>
+        <label for="">Nombre <span style="color: red;"> *</span></label>
         <input type="text" name="nombre">
         <br>
 
-        <label for="">Apellido 1</label>
+        <label for="">Apellido 1 <span style="color: red;"> *</span></label>
         <input type="text" name="apellido1">
         <br>
 
@@ -118,28 +119,24 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
         <input type="text" name="apellido2">
 
         <br>
-        <label for="">email</label>
+        <label for="">email<span style="color: red;"> *</span></label>
         <input type="text" name="email">
 
         <br>
 
-        <label for="">Nombre de usuario</label>
+        <label for="">Nombre de usuario<span style="color: red;"> *</span></label>
         <input type="text" name="login">
         <br>
 
 
-        <label for="password">Contraseña</label>
+        <label for="password">Contraseña<span style="color: red;"> *</span></label>
         <input type="password" name="password">
 
         <br>
 
-        <label for="password_comprobacion">Introduce tu contraseña otra vez: </label>
-        <br>
+        <label for="password_comprobacion">Introduce tu contraseña otra vez: <span style="color: red;"> *</span></label>
         <input type="password" name="password_comprobacion">
         <br>
-        <br>
-
-        <button type="submit">Registrarse</button>
         <br>
 
         <?php
@@ -147,6 +144,9 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
         echo '<h4>' . $iserror . '</h4>';
 
         ?>
+
+        <button type="submit">Registrarse</button>
+        <br>
 
     </form>
     <br>

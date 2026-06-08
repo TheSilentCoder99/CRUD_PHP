@@ -6,10 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = '';
 
     // 1. Recoger los datos del formulario comprobando que se ingrese una regex que solo acepte letras, números y carácteres especiales, dejando fuera los espacios en blanco.
-    if (isset($_POST['usuario']) && isset($_POST['password']) && preg_match('/^\S+$/', $_POST['usuario']) || !preg_match('/^\S+$/', $_POST['password'])) {
+    if (isset($_POST['usuario']) && isset($_POST['password_user']) && preg_match('/^\S+$/', $_POST['usuario']) || !preg_match('/^\S+$/', $_POST['password'])) {
 
         $login = $_POST['usuario'];
-        $password = $_POST['password'];
+        $password = $_POST['password_user'];
     }
 
     // 2. Buscar el usuario en la BD
@@ -55,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      <div class="contenedor-principal">
         <!-- Tarjeta de inicio de sesión -->
         <div class="contenedor">
-            <form method="POST" action="procesar_login.php">
+            <form method="POST" action="login.php">
                 <label>Nombre de usuario:</label>
                 <input type="text" name="usuario" placeholder="usuario" required>
                 
                 <label>Contraseña:</label>
-                <input type="password" name="password" placeholder="••••••••" required>
+                <input type="password" name="password_user" placeholder="••••••••" required>
                 
                 <input type="submit" value="Enviar">
             </form>
