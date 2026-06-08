@@ -52,26 +52,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <!-- EL FORMULARIO DEBE MANDAR AL USUARIO AL ARCHIVO QUE CONTIENE LA LÓGICA DE VALIDACIÓN. DESDE ESA LÓGICA, SI EL CONTENIDO DEL FORMULARIO ES CORRECTO, ES CUANDO REENVÍAS AL USUARIO A LA PÁGINA DE INICIO-->
-    <form action="login.php" method="post">
-        <label for="usuario">Nombre de usuario: </label><br>
-        <input type="text" name="usuario">
-        <br>
-        <br>
-
-        <label for="password">Contraseña: </label>
-        <br>
-        <input type="password" name="password">
-        <br>
-        <br>
-        <button type="submit">Enviar</button>
-        <br>
-    </form>
-    <br>
-    <a href="index.php">Continuar sin iniciar sesión</a>
-    <a href="registro.php">Registrarse</a>
-
-
-    <br>
+     <div class="contenedor-principal">
+        <!-- Tarjeta de inicio de sesión -->
+        <div class="contenedor">
+            <form method="POST" action="procesar_login.php">
+                <label>Nombre de usuario:</label>
+                <input type="text" name="usuario" placeholder="usuario" required>
+                
+                <label>Contraseña:</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+        
+        <!-- Enlaces debajo de la tarjeta -->
+        <div class="enlaces-container">
+            <a href="index.php" class="enlace">Continuar sin iniciar sesión</a>
+            <a href="registro.php" class="enlace">Registrarse</a>
+        </div>
+    </div>
 </body>
 
 </html>
