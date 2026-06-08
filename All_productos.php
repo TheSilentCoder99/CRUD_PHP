@@ -2,67 +2,32 @@
 
 require 'conexion.php';
 
-// BUSCAR UN PRODUCTO
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['p_buscado'])) {
+$where = "WHERE 1=1";
+$params = [];
 
-    $nombre_producto = "%" . $_GET['p_buscado'] . "%";
-
-    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
-FROM producto
-INNER JOIN fabricante ON producto.id_fabricante = fabricante.id
-WHERE producto.nombre LIKE :producto_buscado");
-
-    $stmt->execute(['producto_buscado' => $nombre_producto]);
-
-    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} else {
-    // SI NO SE ENCUENTRA, MOSTRAR TODOS
-    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
-FROM producto
-JOIN fabricante ON producto.id_fabricante = fabricante.id");
-
-    $stmt->execute();
-
-    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+if (!empty($_GET['p_buscado'])) {
+    $where .= " AND producto.nombre LIKE :p_buscado";
+    $params[':p_buscado'] = '%' . $_GET['p_buscado'] . '%';
 }
 
-// BOTON MOSTRAR TODOS
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['mostrar_todos'])) {
-
-    $stmt = $conn->prepare("SELECT producto.*, fabricante.nombre AS nombre_fabricante
-FROM producto
-JOIN fabricante ON producto.id_fabricante = fabricante.id");
-    $stmt->execute();
-    $productos = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-// CALCULANDO OFFSET Y DIFINIENDO NÚMERO DE PRODUCTOS POR PÁGINA
 $productos_por_pagina = 5;
 $pagina_actual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 $offset = ($pagina_actual - 1) * $productos_por_pagina;
 
-// 3. CONTAR EL TOTAL DE PRODUCTOS QUE COINCIDEN CON EL FILTRO
-// Necesitas este número para saber cuántas páginas mostrar
-// Usa el mismo $where para que el conteo respete la búsqueda activa. Este conteo usa como condición el where de la búsqueda, o sea, solo contará los que coincidan con la búsqueda.
-$sql_count = "SELECT COUNT(*) FROM producto JOIN fabricante ON producto.id_fabricante = fabricante.id";
-
+$sql_count = "SELECT COUNT(*) FROM producto JOIN fabricante ON producto.id_fabricante = fabricante.id $where";
 $stmt = $conn->prepare($sql_count);
-$stmt->execute();
-
-$total_productos = $stmt->fetchColumn(); // fetchColumn devuelve un solo valor, no un array
+$stmt->execute($params);
+$total_productos = $stmt->fetchColumn();
 $total_paginas = ceil($total_productos / $productos_por_pagina);
 
 $sql = "SELECT producto.*, fabricante.nombre AS nombre_fabricante
         FROM producto
         JOIN fabricante ON producto.id_fabricante = fabricante.id
+        $where
         LIMIT $productos_por_pagina OFFSET $offset";
-
 $stmt = $conn->prepare($sql);
-$stmt->execute();
+$stmt->execute($params);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +51,6 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input type="text" name="p_buscado" placeholder="Buscar producto...">
         <button type="submit">Buscar</button>
         <br>
-        <button type="submit" name="mostrar_todos">Mostrar todos</button>
         <br>
     </form>
     <br>

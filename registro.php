@@ -76,6 +76,8 @@ if (empty($nombre_registrado) || !preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ]
 
         $iserror = 'Registro completado.';
 
+        header('Location:login.php');
+
     }
 
 }

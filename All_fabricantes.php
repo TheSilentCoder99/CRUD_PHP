@@ -83,8 +83,8 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <!-- Añades los botones de editar y eliminar -->
             <a href="update_fabricante.php?id=<?php echo $fabricante["id"] ?>" target="_blank">Editar</a>
 
-            <a href="delete_fabricante.php?id=<?php echo $fabricante['id']; ?>"
-                onclick="return confirm('¿Seguro que quieres eliminar este fabricante?')">
+            <a href="delete_fabricante.php?id=<?php echo $fabricante['id'];?>"
+                onclick="return confirm('¿Seguro que quieres eliminar este fabricante? Se borrarán todos sus productos asociados.')">
                 Eliminar
             </a>
         </div>

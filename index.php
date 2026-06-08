@@ -9,6 +9,7 @@ require 'conexion.php';
 $orden = isset($_GET['orden']) && $_GET['orden'] === 'asc' ? 'asc' : 'desc';
 
 $orden_siguiente = $orden === 'asc' ? 'desc' : 'asc';
+
 $texto_boton = $orden === 'asc' ? 'precio ↑' : 'precio ↓';
 
 

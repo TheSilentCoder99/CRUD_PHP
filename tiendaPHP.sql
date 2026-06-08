@@ -15,7 +15,7 @@ CREATE TABLE `producto` (
   `imagen` varchar(350) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_fabricante` (`id_fabricante`),
-  CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_fabricante`) REFERENCES `fabricante` (`id`)
+  CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_fabricante`) REFERENCES `fabricante` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE usuario(
