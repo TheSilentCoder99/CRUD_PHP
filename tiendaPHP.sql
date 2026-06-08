@@ -1,7 +1,22 @@
 USE tienda;
 
-ALTER TABLE producto ADD COLUMN descripcion VARCHAR(250);
-ALTER TABLE producto ADD COLUMN imagen VARCHAR(350);
+CREATE TABLE `fabricante` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `producto` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `precio` double NOT NULL,
+  `id_fabricante` int unsigned NOT NULL,
+  `descripcion` varchar(250) DEFAULT NULL,
+  `imagen` varchar(350) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_fabricante` (`id_fabricante`),
+  CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_fabricante`) REFERENCES `fabricante` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE usuario(
 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
