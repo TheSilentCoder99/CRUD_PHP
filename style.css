@@ -1,131 +1,330 @@
-/* Espacio entre elementos */
+/* Reset básico y estilos globales */
 * {
-    margin: 20;
-    padding: 20;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    color: black;
-    background-color: white;
-    padding: 20px;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #333;
 }
 
-.sessionOut{
-    color: red;
+/* Contenedor principal */
+body > * {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.sessionIn{
-    color: green;
-}
-
-/* Espaciado para todos los elementos */
-h1, h2, h3, h4, h5, h6, p, div, section, article, form, table, button, input, select, a {
-    margin-bottom: 15px;
-}
-
-h1, h2{
-        color: blue;
-}
-
-/* Enlaces azules que se agrandan al hacer hover */
-a {
-    color: blue;
+/* Enlaces de sesión */
+.sessionIn, .sessionOut {
+    display: inline-block;
     text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem;
+}
+
+.sessionIn:hover, .sessionOut:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlaces de gestión (solo para usuarios logueados) */
+body > a[href="All_productos.php"],
+body > a[href="All_fabricantes.php"] {
     display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.3rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-a:active{
-color: red;
+body > a[href="panel_usuario.php"] {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #ce332e 0%, #2f3b06 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.3rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-a:hover{
-color: red;
+body > a[href="All_productos.php"]:hover,
+body > a[href="All_fabricantes.php"]:hover,
+body > a[href="panel_usuario.php"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Tablas con fondo lightblue */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: lightgreen;
-    margin-bottom: 20px;
+/* Formulario de búsqueda */
+form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0;
+    text-align: center;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #999;
-        background-color: lightgreen;
-
+form input[type="text"] {
+    width: 70%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    margin-right: 0.5rem;
 }
 
-/* Botones con fondo lightblue y letra negra */
-button, input[type="submit"], input[type="button"] {
-    background-color: lightblue;
-    color: black;
-    border: 1px solid #999;
-    padding: 10px 20px;
+form input[type="text"]:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    display: inline-block;
-    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Botones se agrandan al hacer hover */
-button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de ordenar precio */
+a[href*="orden"] {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+a[href*="orden"]:hover {
+    background: #764ba2;
+    color: white;
     transform: scale(1.05);
 }
 
-/* Inputs de texto con línea azul */
-input[type="text"], input[type="email"], input[type="password"], textarea, select {
-    border: 2px solid blue;
-    padding: 10px;
-    width: 25%;
-    margin-bottom: 15px;
+/* Tabla de productos */
+table {
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+table th, table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table tr {
+    transition: background-color 0.3s ease;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+table td {
+    color: #555;
+}
+
+/* Enlace "Ver ficha" dentro de la tabla */
+table a {
+    text-decoration: none;
+    color: #667eea;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+table a:hover {
+    color: #764ba2;
+    background: #f0f0f0;
+}
+
+/* Estilo para el precio en la tabla */
+table td:nth-child(2) {
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Estilo para el fabricante */
+table td:nth-child(4) {
+    font-style: italic;
+    color: #764ba2;
+}
+
+/* Separador */
+hr {
+    margin: 2rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Navegación de páginas */
+.navegacion_paginasIndex {
+    display: inline-block;
+    text-decoration: none;
+    background: white;
+    color: #764ba2;
+    padding: 0.6rem 1rem;
+    margin: 0.2rem;
+    border-radius: 8px;
+    font-weight: bold;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 40px;
 }
 
-/* Inputs adquieren fondo lightgreen al escribir */
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
-    background-color: lightgreen;
-    outline: none;
-    border-color: darkblue;
+.navegacion_paginasIndex:hover {
+    background: #764ba2;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Espaciado adicional para elementos en bloque */
-div, p, ul, ol, form {
-    margin-bottom: 20px;
+/* Estilo para la página activa */
+.navegacion_paginasIndex.activo {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: default;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Espaciado entre celdas de tabla */
-td, th {
-    margin: 5px;
-    padding: 12px;
+.navegacion_paginasIndex.activo:hover {
+    transform: none;
 }
 
-img {
-    width: 400px;
-    height: 300px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    form input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    form button {
+        width: 100%;
+    }
+    
+    table, table thead, table tbody, table tr, table td, table th {
+        display: block;
+    }
+    
+    table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #764ba2;
+        margin-right: 1rem;
+    }
+    
+    .navegacion_paginasIndex {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 35px;
+    }
+    
+    .sessionIn, .sessionOut,
+    body > a[href="All_productos.php"],
+    body > a[href="All_fabricantes.php"] {
+        display: block;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
 }
 
-.navegacion_paginasIndex.activo{
-    color: red;
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.navegacion_paginasIndex{
-    font-size:larger;
-    font-weight: 700;
-    color: blue;
+table tr {
+    animation: fadeIn 0.3s ease-out;
 }
 
-.navegacion_crear_producto{
-        font-size:larger;
-
-    color: blue;
-    font: 700;
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.navegacion_crear_producto.activo{
-    color: red;
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
 }
